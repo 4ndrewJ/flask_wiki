@@ -4,20 +4,24 @@ import wikipedia
 app = Flask(__name__)
 # Set the secret key. Keep this really secret:
 app.secret_key = 'IT@JCUA0Zr98j/3yXa R~XHH!jmN]LWX/,?RT'
+app.home_count = 0
 
 
 @app.route('/')
 def home():
-    return render_template("home.html")
+    app.home_count += 1
+    return render_template("home.html", home_count=app.home_count)
 
 
 @app.route('/about')
 def about():
+    app.home_count = 0
     return render_template('about.html')
 
 
 @app.route('/search', methods=['POST', 'GET'])
 def search():
+    app.home_count = 0
     if request.method == 'POST':
         session['search_term'] = request.form['search']
         return redirect(url_for('results'))
@@ -26,6 +30,7 @@ def search():
 
 @app.route('/results')
 def results():
+    app.home_count = 0
     search_term = session['search_term']
     page = get_page(search_term)
     return render_template("results.html", page=page)

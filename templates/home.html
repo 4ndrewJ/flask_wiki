@@ -1,5 +1,26 @@
 {% extends "layout.html" %}
 {% block title %}Home{% endblock %}
 {% block content %}
-    <p>This is the home page. It's not exciting yet...</p>
+    {% if home_count == 1 %}
+        <p>This is the home page. It's not exciting yet...</p>
+        <p>Please refrain from pressing home again...</p>
+    {% elif home_count == 2 %}
+        <p>What... why would you do this...</p>
+        <p>See all those useful features you could be clicking</p>
+        <p>but nooooo, you just have to hit the home button</p>
+    {% elif home_count == 3 %}
+        <p>Please stop, this is as bad as googling 'google' -_-</p>
+    {% elif home_count == 4 %}
+        <p>Yes... you are in fact on the home page, are you happy?</p>
+    {% elif home_count == 5%}
+        <p>...</p>
+    {% elif home_count == 6%}
+        <p>hrmm...</p>
+    {% elif home_count == 7%}
+        <p>I'm warning you, the next home, really is the last</p>
+    {% elif home_count < 100%}
+        <p>...</p>
+    {% else %}
+        <p>You're too persistent -_-</p>
+    {% endif %}
 {% endblock %}
